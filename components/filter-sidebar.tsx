@@ -23,6 +23,7 @@ interface FilterSidebarProps {
 export default function FilterSidebar({ filterOptions, onFilterChange, bookmarksCount }: FilterSidebarProps) {
   const [localFilters, setLocalFilters] = useState<FilterOptions>(filterOptions)
   const [hasError, setHasError] = useState(false)
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false)
   const today = startOfToday()
 
   useEffect(() => {
@@ -83,6 +84,7 @@ export default function FilterSidebar({ filterOptions, onFilterChange, bookmarks
 
       setLocalFilters(updatedFilters)
       onFilterChange(updatedFilters)
+      setIsCalendarOpen(false)
     } catch (error) {
       console.error("Error updating date filters:", error)
       setHasError(true)
@@ -222,7 +224,7 @@ export default function FilterSidebar({ filterOptions, onFilterChange, bookmarks
         </h4>
         <div className="grid gap-2" role="group" aria-labelledby="date-filter-heading">
           <div className="grid grid-cols-1 gap-2">
-            <Popover>
+            <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"
@@ -251,7 +253,7 @@ export default function FilterSidebar({ filterOptions, onFilterChange, bookmarks
               </PopoverContent>
             </Popover>
 
-            <Popover>
+            <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"

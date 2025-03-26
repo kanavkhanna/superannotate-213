@@ -30,6 +30,7 @@ export default function VolunteerOpportunities() {
   })
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const isDesktop = useMediaQuery("(min-width: 768px)")
 
   useEffect(() => {
@@ -186,7 +187,7 @@ export default function VolunteerOpportunities() {
   )
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
+    <div className="min-h-screen bg-gradient-to-b from-background to-background/80 touch-manipulation">
       <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-md border-b border-border/40">
         <div className="container mx-auto py-4 px-4 md:px-6">
           <div className="flex items-center justify-between">
@@ -196,7 +197,7 @@ export default function VolunteerOpportunities() {
             <div className="flex items-center gap-3">
               <ThemeToggle />
               {!isDesktop && (
-                <Drawer>
+                <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
                   <DrawerTrigger asChild>
                     <Button
                       variant="outline"
@@ -208,8 +209,8 @@ export default function VolunteerOpportunities() {
                       <span className="sr-only">Filter</span>
                     </Button>
                   </DrawerTrigger>
-                  <DrawerContent>
-                    <div className="p-4">
+                  <DrawerContent className="h-[85vh] max-h-[85vh]">
+                    <div className="p-4 h-full overflow-y-auto">
                       <h3 className="text-lg font-semibold mb-4">Filters</h3>
                       {FilterContent}
                     </div>
@@ -238,8 +239,8 @@ export default function VolunteerOpportunities() {
         <div className="flex flex-col md:flex-row gap-6">
           {isDesktop && (
             <aside className="w-full md:w-1/4 lg:w-1/5 md:sticky md:top-24 md:self-start">
-              <Card className="bg-card/50 backdrop-blur-sm border-border/60 shadow-sm">
-                <CardContent className="p-4">{FilterContent}</CardContent>
+              <Card className="bg-card/50 backdrop-blur-sm border-border/60 shadow-sm max-h-[calc(100vh-8rem)] overflow-hidden">
+                <CardContent className="p-4 overflow-y-auto max-h-[calc(100vh-8rem)]">{FilterContent}</CardContent>
               </Card>
             </aside>
           )}

@@ -98,7 +98,7 @@ export default function OpportunityCard({ opportunity, isBookmarked, onBookmarkT
       </Card>
 
       <Dialog open={showDetails} onOpenChange={setShowDetails}>
-        <DialogContent className="sm:max-w-lg rounded-lg overflow-hidden p-0 gap-0">
+        <DialogContent className="sm:max-w-lg rounded-lg overflow-hidden p-0 gap-0 max-h-[85vh] overflow-y-auto">
           <div className="relative h-56 overflow-hidden">
             <img
               src={imageUrl || "/placeholder.svg?height=300&width=600"}
@@ -109,19 +109,7 @@ export default function OpportunityCard({ opportunity, isBookmarked, onBookmarkT
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute top-3 right-3 bg-background/80 hover:bg-background/90 rounded-full shadow-sm"
-              onClick={(e) => {
-                e.stopPropagation()
-                onBookmarkToggle()
-              }}
-              aria-label={isBookmarked ? `Remove ${title} from bookmarks` : `Bookmark ${title}`}
-              aria-pressed={isBookmarked}
-            >
-              {isBookmarked ? <BookmarkCheck className="h-5 w-5 text-primary" /> : <Bookmark className="h-5 w-5" />}
-            </Button>
+            {/* Removed bookmark icon from modal header to avoid overlap with close button */}
             <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
               <h2 className="text-xl font-bold">{title}</h2>
               <p className="text-sm text-white/80">{organization}</p>
