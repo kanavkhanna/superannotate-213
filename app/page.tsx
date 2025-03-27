@@ -12,7 +12,6 @@ import { Input } from "@/components/ui/input"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import FilterSidebar from "@/components/filter-sidebar"
 import OpportunityCard from "@/components/opportunity-card"
-import ThemeToggle from "@/components/theme-toggle"
 import { type Opportunity, filterOpportunities } from "@/lib/opportunities"
 import type { FilterOptions } from "@/lib/types"
 import { toast } from "sonner"
@@ -194,8 +193,7 @@ export default function VolunteerOpportunities() {
             <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
               Volunteer Connect
             </h1>
-            <div className="flex items-center gap-3">
-              <ThemeToggle />
+            <div className="flex items-center">
               {!isDesktop && (
                 <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
                   <DrawerTrigger asChild>

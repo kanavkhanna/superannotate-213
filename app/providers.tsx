@@ -16,7 +16,8 @@ export default function Providers({ children }: ProvidersProps) {
     <ThemeProvider
       attribute="class"
       defaultTheme="light"
-      enableSystem
+      enableSystem={false}
+      forcedTheme="light"
       disableTransitionOnChange
       storageKey="volunteer-theme"
     >
@@ -26,7 +27,7 @@ export default function Providers({ children }: ProvidersProps) {
         <Toaster
           position="top-right"
           closeButton
-          theme="system"
+          theme="light"
           richColors
           toastOptions={{
             classNames: {
